@@ -37,8 +37,8 @@ print('Address infos:', ai)
 addr = ai[0][-1]
 print('Connect address:', addr)
 
-try:
-    while True:
+while True:
+    try:
         x = 0
         s = socket.socket()
         s.connect(addr)
@@ -61,8 +61,14 @@ try:
                         x=1
         time.sleep(5)
         s.close()
-except Exception as inst:
-    print(type(inst))    # the exception instance
-    print(inst.args)     # arguments stored in .args
-    print(inst)          # __str__ allows args to be printed directly,
+    except (KeyboardInterrupt, SystemExit):
+        break
+    except Exception as inst:
+        print('')
+        print('-------------------------------------------------------------')
+        print(type(inst))    # the exception instance
+        print(inst.args)     # arguments stored in .args
+        print(inst)          # __str__ allows args to be printed directly,
+        print('-------------------------------------------------------------')
+        print('')
     # but may be overridden in exception subclasses
